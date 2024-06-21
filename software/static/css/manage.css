@@ -1,0 +1,89 @@
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 100svh;
+}
+
+#videoPlayer {
+    margin-top: 5px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+#sendBlock {
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#keyboard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.kb-button {
+    width: 58px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.text-btn {
+    font-weight: 500;
+}
+
+.toggle-btn.active {
+    background-color: #094cb0;
+}
+
+#input {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+}
+
+#input input {
+    border: none;
+    border-radius: 0;
+    box-shadow: none !important;
+    background-color: #3f474f;
+    height: 44px;
+}
+
+#input #directButton {
+    border: none;
+    border-radius: 10px 0 0 10px;
+    width: 70px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input #sendButton {
+    border: none;
+    border-radius: 0 10px 10px 0;
+    width: 70px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

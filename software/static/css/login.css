@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+}
+
+#loginContainer {
+    background-color: #3f474f;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+#loginContainer button[type="submit"] {
+    float: right;
+}
+
+#errorMessage {
+    color: var(--bs-danger);
+}
