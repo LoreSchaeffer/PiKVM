@@ -20,7 +20,9 @@ const validKeys = [
     'DOWN',
     'LEFT',
     'RIGHT',
-    'RETURN'
+    'RETURN',
+    'BACKSPACE',
+    'DELETE',
 ];
 
 router.use(express.json());

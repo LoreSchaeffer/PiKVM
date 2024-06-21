@@ -30,10 +30,14 @@ textInput.keypress(event => {
 
 $('#sendButton').click(() => sendCommand());
 
-$('.toggle-btn').click(function () {
+$('.toggle-btn').click(function (event) {
     const btn = $(this);
-    if (btn.hasClass('active')) btn.removeClass('active');
-    else btn.addClass('active');
+    if (event.shiftKey) {
+        if (btn.hasClass('active')) btn.removeClass('active');
+    } else {
+        if (btn.hasClass('active')) btn.removeClass('active');
+        else btn.addClass('active');
+    }
 });
 
 $('.kb-button').click(function (event) {
@@ -41,7 +45,7 @@ $('.kb-button').click(function (event) {
 
     if (btn.hasClass('toggle-btn')) {
         if (event.shiftKey) {
-            tapKey(btn.data('shift-key'));
+            tapKey(btn.data('key'));
         } else {
             if (btn.hasClass('active')) {
                 pressKey(btn.data('key'));

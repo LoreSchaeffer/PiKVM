@@ -16,6 +16,8 @@ int pareKey(String name) {
   else if (name == "LEFT") return KEY_LEFT_ARROW;
   else if (name == "RIGHT") return KEY_RIGHT_ARROW;
   else if (name == "RETURN") return KEY_RETURN;
+  else if (name == "BACKSPACE") return KEY_BACKSPACE;
+  else if (name == "DELETE") return KEY_DELETE;
   else return 0;
 }
 
@@ -53,7 +55,7 @@ void releaseKey(String name) {
     Serial1.print("NR");
     Serial1.println(name);
   } else{
-    Keyboard.press(key);
+    Keyboard.release(key);
   }
 
   Serial1.print("R");
