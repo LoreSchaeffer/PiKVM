@@ -1,9 +1,11 @@
 const express = require('express');
 const {Serial} = require("../serial");
+const {Gpio} = require('onoff');
 const router = express.Router();
 const serial = new Serial();
 
 const TAP_DURATION = process.env.TAP_DURATION || 50;
+const RELE = new Gpio(process.env.GPIO || 519, 'out');
 
 const validKeys = [
     'CTRL',
@@ -23,6 +25,11 @@ const validKeys = [
     'RETURN',
     'BACKSPACE',
     'DELETE',
+];
+
+const powerKeys = [
+    'POWER',
+    'KILL'
 ];
 
 router.use(express.json());
@@ -82,5 +89,30 @@ router.post('/tap_key', async (req, res) => {
     setTimeout(() => serial.write('R' + key), TAP_DURATION);
     res.status(200).send('OK');
 })
+
+router.post('/power_key', async (req, res) => {
+    const key = req.body.key;
+    if (!key || key.length === 0) {
+        res.status(400).send('Key is empty');
+        return;
+    }
+    if (!powerKeys.includes(key)) {
+        res.status(400).send('Invalid key');
+        return;
+    }
+
+    switch (key) {
+        case 'POWER':
+            RELE.writeSync(1);
+            setTimeout(() => RELE.writeSync(0), 500);
+            break;
+        case 'KILL':
+            RELE.writeSync(1);
+            setTimeout(() => RELE.writeSync(0), 1500);
+            break;
+    }
+
+    res.status(200).send('OK');
+});
 
 module.exports = {router};

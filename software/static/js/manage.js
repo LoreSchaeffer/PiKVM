@@ -43,18 +43,22 @@ $('.toggle-btn').click(function (event) {
 $('.kb-button').click(function (event) {
     const btn = $(this);
 
-    if (btn.hasClass('toggle-btn')) {
-        if (event.shiftKey) {
-            tapKey(btn.data('key'));
-        } else {
-            if (btn.hasClass('active')) {
-                pressKey(btn.data('key'));
-            } else {
-                releaseKey(btn.data('key'));
-            }
-        }
+    if (btn.hasClass('power-button')) {
+        powerKey(btn.data('key'));
     } else {
-        tapKey(btn.data('key'));
+        if (btn.hasClass('toggle-btn')) {
+            if (event.shiftKey) {
+                tapKey(btn.data('key'));
+            } else {
+                if (btn.hasClass('active')) {
+                    pressKey(btn.data('key'));
+                } else {
+                    releaseKey(btn.data('key'));
+                }
+            }
+        } else {
+            tapKey(btn.data('key'));
+        }
     }
 });
 
@@ -159,6 +163,15 @@ function releaseKey(key) {
 function tapKey(key) {
     $.ajax({
         url: '/api/tap_key',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({key: key})
+    });
+}
+
+function powerKey(key) {
+    $.ajax({
+        url: '/api/power_key',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({key: key})
